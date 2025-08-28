@@ -29,7 +29,7 @@ class StartPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20),
-            Center(child: Image.asset("lib/images/black-cat.png", height: 200)),
+            Center(child: Image.asset("lib/images/black-cat.png", height: 300)),
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 15.0),
@@ -62,8 +62,14 @@ class StartPage extends StatelessWidget {
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
             ),
-            SizedBox(height: 60),
-            myButton(),
+            SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: (15.0)),
+              child: myButton(
+                mytext: "Rezept Hinzufügen",
+                event: () => Navigator.pushNamed(context, '/menupage'),
+              ),
+            ),
           ],
         ),
       ),

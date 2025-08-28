@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uebungsapp/pages/menu_page.dart';
 import 'package:uebungsapp/pages/start_page.dart';
 
 void main() {
@@ -11,6 +12,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: StartPage());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: StartPage(),
+      routes: {
+        '/startpage': (context) => StartPage(),
+        '/menupage': (context) => MenuPage(),
+      },
+    );
   }
 }
