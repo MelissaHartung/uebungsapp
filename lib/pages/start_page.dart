@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uebungsapp/components/button.dart';
 
 class StartPage extends StatelessWidget {
   const StartPage({super.key});
@@ -16,7 +17,7 @@ class StartPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Test",
+                  "Rezepte",
                   style: TextStyle(
                     fontSize: 38,
                     fontWeight: FontWeight.bold,
@@ -61,6 +62,8 @@ class StartPage extends StatelessWidget {
                 style: TextStyle(fontSize: 14, color: Colors.white),
               ),
             ),
+            SizedBox(height: 60),
+            myButton(),
           ],
         ),
       ),
