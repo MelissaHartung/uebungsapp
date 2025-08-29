@@ -81,6 +81,8 @@ class MenuPage extends StatelessWidget {
              ),
           ),
           SizedBox(height: 25),
+          Text("Rezepte", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
+          SizedBox(height: 25),
           EventTile(ranking: "5", name: "Pfannekuchen", category: "Frühstück", imagePath: "lib/images/spiegelei.png",
           )
           ],

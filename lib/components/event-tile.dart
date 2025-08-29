@@ -18,6 +18,7 @@ const EventTile({
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.all(8),
       width: 200,
       decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(20)
       ),
@@ -25,11 +26,18 @@ const EventTile({
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
         Image.asset(imagePath),
-        Text(name),
+        Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white) ,),
+        SizedBox(height: 5,),
         Row (
+          mainAxisAlignment:MainAxisAlignment.spaceBetween,
           children: [
-            Text(category),
-            Text(ranking),
+            Text(category, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white) ,),
+            Row(
+              children: [
+                Text(ranking, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),),
+                          Icon( Icons.star, color: Colors.amber, size: 20,),
+              ],
+            )
           ],
         )
         
