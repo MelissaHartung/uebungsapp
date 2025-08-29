@@ -68,6 +68,7 @@ class StartPage extends StatelessWidget {
               child: myButton(
                 mytext: "Rezept Hinzufügen",
                 event: () => Navigator.pushNamed(context, '/menupage'),
+                mycolor: const Color.fromARGB(255, 46, 109, 49),
               ),
             ),
           ],
