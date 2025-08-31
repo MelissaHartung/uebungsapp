@@ -5,14 +5,14 @@ class EventTile extends StatelessWidget {
   final String category;
   final String imagePath;
   final String ranking;
-  // final void Function()? details;
+  final void Function()? details;
 
 const EventTile({
   required this.ranking,
   required this.name,
   required this.category,
   required this.imagePath,
-  // required this.details,
+  required this.details,
   super.key});
 
   @override
@@ -25,7 +25,9 @@ const EventTile({
       child: Column( 
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-        Image.asset(imagePath),
+        GestureDetector
+        (onTap:details,
+        child: Image.asset(imagePath)),
         Text(name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white) ,),
         SizedBox(height: 5,),
         Row (

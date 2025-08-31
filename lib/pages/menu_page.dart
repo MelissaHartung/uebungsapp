@@ -9,6 +9,29 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  List EventList=[
+      EventTile(
+        ranking: "4",
+        name: "Pfannekuchen",
+        category: "Frühstück",
+        imagePath: "lib/images/spiegelei.png",
+        details: () {},
+      ),
+      EventTile(
+        ranking: "5",
+        name: "Hähnchen",
+        category: "Hauptspeise",
+        imagePath: "lib/images/chicken.png",
+        details: () {},
+      ),
+      EventTile(ranking: "5",
+       name: "Pudding",
+        category: "Dessert",
+         imagePath: "lib/images/pudding.png",
+          details: () {},
+          )
+    ];
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 120, 156, 122),
       appBar: AppBar(
@@ -83,8 +106,17 @@ class MenuPage extends StatelessWidget {
           SizedBox(height: 25),
           Text("Rezepte", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),),
           SizedBox(height: 25),
-          EventTile(ranking: "5", name: "Pfannekuchen", category: "Frühstück", imagePath: "lib/images/spiegelei.png",
+          Expanded(
+            child: ListView.builder(
+            itemBuilder: (context, index) => EventList[index],
+
+            itemCount: EventList.length,
+            scrollDirection: Axis.horizontal,)
+            
+           
+            
           )
+          
           ],
         ),
       ),
