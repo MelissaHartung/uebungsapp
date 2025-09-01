@@ -4,8 +4,17 @@ class myButton extends StatelessWidget {
   final String mytext;
   final void Function()? event;
   final Color mycolor;
+  final IconData icon;
+  final Widget? image;
 
-  const myButton({super.key, required this.event, required this.mytext, required this.mycolor});
+  const myButton({
+    super.key,
+    required this.event,
+    required this.mytext,
+    required this.mycolor,
+    required this.icon,
+    this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +38,7 @@ class myButton extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10),
-            Icon(Icons.trending_flat, color: Colors.white),
+            Icon(icon, color: Colors.white),
           ],
         ),
       ),
