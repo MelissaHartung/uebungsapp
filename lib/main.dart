@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uebungsapp/pages/menu_page.dart';
 import 'package:uebungsapp/pages/start_page.dart';
+import 'package:uebungsapp/pages/add_rezept.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/startpage': (context) => StartPage(),
         '/menupage': (context) => MenuPage(),
+        '/addrezept': (context) => AddRezept(),
       },
     );
   }

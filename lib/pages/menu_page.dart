@@ -8,7 +8,7 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List EventList = [
+    List eventList = [
       EventTile(
         ranking: "4",
         name: "Pfannekuchen",
@@ -115,11 +115,11 @@ class MenuPage extends StatelessWidget {
             SizedBox(height: 25),
             Expanded(
               child: ListView.builder(
-                itemCount: EventList.length,
+                itemCount: eventList.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: EventList[index],
+                  child: eventList[index],
                 ),
               ),
             ),
@@ -133,30 +133,16 @@ class MenuPage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
-            myButton(
-              event: () {},
-              image: Image.asset('lib/images/diet.png', height: 30),
-              mytext: 'Rezept hinzufügen',
-              mycolor: Colors.green,
-              icon: Icons.add,
+            Padding(
+              padding: const EdgeInsets.only(bottom: .0),
+              child: myButton(
+                event: () => Navigator.pushNamed(context, '/addrezept'),
+                image: Image.asset('lib/images/diet.png', height: 60),
+                mytext: 'Rezept hinzufügen',
+                mycolor: const Color.fromARGB(255, 59, 104, 60),
+                icon: Icons.add,
+              ),
             ),
-            // Container(
-            //   //Zum Button
-            //   decoration: BoxDecoration(
-            //     color: Colors.green,
-            //     borderRadius: BorderRadius.circular(20),
-            //   ),
-            //   child: Row(
-            //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //     children: [
-            //       Image.asset('lib/images/diet.png', height: 100),
-            //       Row(
-            //         children: [
-            //         ],
-            //       ),
-            //     ],
-            //   ),
-            // ),
           ],
         ),
       ),

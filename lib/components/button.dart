@@ -29,6 +29,8 @@ class myButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            if (image != null) image!,
+            SizedBox(width: 40),
             Text(
               mytext,
               style: TextStyle(
