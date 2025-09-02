@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
-import 'package:uebungsapp/components/button.dart';
 
 class AddRezept extends StatelessWidget {
   const AddRezept({super.key});
@@ -10,37 +8,50 @@ class AddRezept extends StatelessWidget {
     final myTextController = TextEditingController();
     final myTextController1 = TextEditingController();
     final myTextController2 = TextEditingController();
+
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 120, 156, 122),
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(height: 20),
-            Row(
-              children: [
-                TextField(),
-                TextField(controller: myTextController),
-              ],
-            ),
-            SizedBox(height: 20),
-            TextField(controller: myTextController1),
-            SizedBox(height: 20),
-            TextField(controller: myTextController2),
-            IconButton(
-              onPressed: () => {
-                print(
-                  "save schritt 1 " +
-                      myTextController.text +
-                      "\nsave schritt 2 " +
-                      myTextController1.text +
-                      "\nsave schritt 3 " +
-                      myTextController2.text,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+
+              // Row with two TextFields
+              Row(
+                children: [
+                  Expanded(child: TextField()),
+                  const SizedBox(width: 10),
+                  Expanded(child: TextField(controller: myTextController)),
+                ],
+              ),
+
+              const SizedBox(height: 20),
+              TextField(controller: myTextController1),
+              const SizedBox(height: 20),
+              TextField(controller: myTextController2),
+              const SizedBox(height: 20),
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: () {
+                    print(
+                      "save schritt 1: ${myTextController.text}\n"
+                      "save schritt 2: ${myTextController1.text}\n"
+                      "save schritt 3: ${myTextController2.text}",
+                    );
+                  },
+                  icon: const Icon(
+                    Icons.archive_rounded,
+                    color: Colors.green,
+                    size: 30.0,
+                  ),
                 ),
-              },
-              icon: Icon(Icons.add, color: Colors.green, size: 30.0),
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
