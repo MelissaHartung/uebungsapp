@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:uebungsapp/components/text_field_zutaten.dart';
 
 class AddRezept extends StatelessWidget {
   const AddRezept({super.key});
@@ -31,7 +32,11 @@ class AddRezept extends StatelessWidget {
                 child: TextField(
                   decoration: InputDecoration(
                     hintText: "Rezeptname",
-                    hintStyle: TextStyle(color: Colors.white),
+                    hintStyle: TextStyle(
+                      color: const Color.fromARGB(150, 255, 255, 255),
+                    ),
+                    fillColor: Color.fromARGB(255, 49, 87, 50),
+                    filled: true,
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.white, width: 2),
                       borderRadius: BorderRadius.circular(20),
@@ -48,7 +53,11 @@ class AddRezept extends StatelessWidget {
               DropdownButtonFormField2<String>(
                 decoration: InputDecoration(
                   hintText: "Kategorie",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(
+                    color: const Color.fromARGB(150, 255, 255, 255),
+                  ),
+                  fillColor: Color.fromARGB(255, 49, 87, 50),
+                  filled: true,
 
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white, width: 2),
@@ -90,31 +99,38 @@ class AddRezept extends StatelessWidget {
               ),
 
               SizedBox(height: 20),
-
-              TextField(
-                style: TextStyle(color: Colors.white),
-                controller: myTextController1,
-                decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 20),
-                  hintText: "Zutaten",
-                  hintStyle: TextStyle(color: Colors.white),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
+              ZutatenTextField(),
+              // TextField(
+              //   style: TextStyle(color: Colors.white),
+              //   controller: myTextController1,
+              //   decoration: InputDecoration(
+              //     hintText: "Zutaten",
+              //     hintStyle: TextStyle(
+              //       color: const Color.fromARGB(150, 255, 255, 255),
+              //     ),
+              //     fillColor: Color.fromARGB(255, 49, 87, 50),
+              //     filled: true,
+              //     enabledBorder: OutlineInputBorder(
+              //       borderSide: BorderSide(color: Colors.white, width: 2),
+              //       borderRadius: BorderRadius.circular(20),
+              //     ),
+              //     border: OutlineInputBorder(
+              //       borderSide: BorderSide(color: Colors.white, width: 2),
+              //       borderRadius: BorderRadius.circular(20),
+              //     ),
+              //   //   ),
+              //   // ),
               SizedBox(height: 20),
 
               TextField(
                 controller: myTextController2,
                 decoration: InputDecoration(
                   hintText: "Zubereitung",
-                  hintStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(
+                    color: const Color.fromARGB(150, 255, 255, 255),
+                  ),
+                  fillColor: Color.fromARGB(255, 49, 87, 50),
+                  filled: true,
 
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.white, width: 2),
@@ -130,9 +146,19 @@ class AddRezept extends StatelessWidget {
 
               Align(
                 alignment: Alignment.centerRight,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.add),
+                child: Container(
+                  width: 50,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Color.fromARGB(255, 56, 80, 51),
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.system_update_tv_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
               ),
               // print(
