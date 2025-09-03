@@ -27,33 +27,14 @@ class AddRezept extends StatelessWidget {
             children: [
               SizedBox(height: 20),
 
-              Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Rezeptname",
-                    hintStyle: TextStyle(
-                      color: const Color.fromARGB(150, 255, 255, 255),
-                    ),
-                    fillColor: Color.fromARGB(255, 49, 87, 50),
-                    filled: true,
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white, width: 2),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-              ),
+              ZutatenTextField(name: "Rezeptname", bulletList: false),
+
               SizedBox(height: 20),
 
               DropdownButtonFormField2<String>(
                 decoration: InputDecoration(
-                  hintText: "Kategorie",
-                  hintStyle: TextStyle(
+                  labelText: "Kategorie",
+                  labelStyle: TextStyle(
                     color: const Color.fromARGB(150, 255, 255, 255),
                   ),
                   fillColor: Color.fromARGB(255, 49, 87, 50),
@@ -99,49 +80,9 @@ class AddRezept extends StatelessWidget {
               ),
 
               SizedBox(height: 20),
-              ZutatenTextField(),
-              // TextField(
-              //   style: TextStyle(color: Colors.white),
-              //   controller: myTextController1,
-              //   decoration: InputDecoration(
-              //     hintText: "Zutaten",
-              //     hintStyle: TextStyle(
-              //       color: const Color.fromARGB(150, 255, 255, 255),
-              //     ),
-              //     fillColor: Color.fromARGB(255, 49, 87, 50),
-              //     filled: true,
-              //     enabledBorder: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white, width: 2),
-              //       borderRadius: BorderRadius.circular(20),
-              //     ),
-              //     border: OutlineInputBorder(
-              //       borderSide: BorderSide(color: Colors.white, width: 2),
-              //       borderRadius: BorderRadius.circular(20),
-              //     ),
-              //   //   ),
-              //   // ),
+              ZutatenTextField(name: "Zutat", bulletList: true),
               SizedBox(height: 20),
-
-              TextField(
-                controller: myTextController2,
-                decoration: InputDecoration(
-                  hintText: "Zubereitung",
-                  hintStyle: TextStyle(
-                    color: const Color.fromARGB(150, 255, 255, 255),
-                  ),
-                  fillColor: Color.fromARGB(255, 49, 87, 50),
-                  filled: true,
-
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
+              ZutatenTextField(name: "Zubereitung", bulletList: true),
               SizedBox(height: 20),
 
               Align(

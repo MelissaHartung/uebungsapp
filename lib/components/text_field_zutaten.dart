@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ZutatenTextField extends StatefulWidget {
-  const ZutatenTextField({super.key});
+  final String name;
+  final bool bulletList;
+  const ZutatenTextField({
+    required this.name,
+    required this.bulletList,
+    super.key,
+  });
 
   @override
   State<ZutatenTextField> createState() => _ZutatenTextFieldState();
@@ -13,41 +19,39 @@ class _ZutatenTextFieldState extends State<ZutatenTextField> {
   @override
   void initState() {
     super.initState();
+    if (widget.bulletList) {
+      myTextController1.addListener(() {
+        final oldText = myTextController1.text;
+        final lines = oldText.split('\n');
 
-    myTextController1.addListener(() {
-      final oldText = myTextController1.text;
-      final lines = oldText.split('\n');
+        List<String> newLines = [];
 
-      List<String> newLines = [];
+        for (var line in lines) {
+          final trimmedLine = line.trimLeft();
 
-      for (var line in lines) {
-        final trimmedLine = line.trimLeft();
-
-        if (trimmedLine.isEmpty) {
-          newLines.add('');
+          if (trimmedLine.isEmpty) {
+            newLines.add('');
+          } else if (trimmedLine.startsWith('•')) {
+            newLines.add(line);
+          } else {
+            newLines.add('• $trimmedLine');
+          }
         }
-        // Wenn Zeile schon mit "•" beginnt (auch mit Leerzeichen davor) → nicht nochmal hinzufügen
-        else if (trimmedLine.startsWith('•')) {
-          newLines.add(line);
+        final newText = newLines.join('\n');
+
+        if (newText != oldText) {
+          final cursorOffset = myTextController1.selection.baseOffset;
+          final offsetDiff = newText.length - oldText.length;
+
+          myTextController1.value = TextEditingValue(
+            text: newText,
+            selection: TextSelection.collapsed(
+              offset: cursorOffset + offsetDiff,
+            ),
+          );
         }
-        // Nur Zeilen, die NICHT mit • beginnen → hinzufügen
-        else {
-          newLines.add('• $trimmedLine');
-        }
-      }
-
-      final newText = newLines.join('\n');
-
-      if (newText != oldText) {
-        final cursorOffset = myTextController1.selection.baseOffset;
-        final offsetDiff = newText.length - oldText.length;
-
-        myTextController1.value = TextEditingValue(
-          text: newText,
-          selection: TextSelection.collapsed(offset: cursorOffset + offsetDiff),
-        );
-      }
-    });
+      });
+    }
   }
 
   @override
@@ -64,8 +68,9 @@ class _ZutatenTextFieldState extends State<ZutatenTextField> {
       keyboardType: TextInputType.multiline,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
-        hintText: "Zutaten",
-        hintStyle: TextStyle(color: const Color.fromARGB(150, 255, 255, 255)),
+        labelText: widget.name,
+        labelStyle: TextStyle(color: const Color.fromARGB(160, 255, 253, 253)),
+        hintStyle: TextStyle(color: const Color.fromARGB(160, 255, 255, 255)),
         fillColor: Color.fromARGB(255, 49, 87, 50),
         filled: true,
         enabledBorder: OutlineInputBorder(
