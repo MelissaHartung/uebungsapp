@@ -21,69 +21,89 @@ class AddRezept extends StatelessWidget {
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 20),
 
-              ZutatenTextField(name: "Rezeptname", bulletList: false),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                margin: EdgeInsets.symmetric(horizontal: 25),
+                child: ZutatenTextField(name: "Rezeptname", bulletList: false),
+              ),
 
-              SizedBox(height: 20),
+              // SizedBox(height: 10),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                margin: EdgeInsets.symmetric(horizontal: 25),
+                child: DropdownButtonFormField2<String>(
+                  decoration: InputDecoration(
+                    labelText: "Kategorie",
+                    labelStyle: TextStyle(
+                      color: const Color.fromARGB(150, 255, 255, 255),
+                    ),
+                    fillColor: Color.fromARGB(255, 49, 87, 50),
+                    filled: true,
 
-              DropdownButtonFormField2<String>(
-                decoration: InputDecoration(
-                  labelText: "Kategorie",
-                  labelStyle: TextStyle(
-                    color: const Color.fromARGB(150, 255, 255, 255),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white, width: 2),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    contentPadding: EdgeInsets.all(15),
                   ),
-                  fillColor: Color.fromARGB(255, 49, 87, 50),
-                  filled: true,
-
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
+                  iconStyleData: IconStyleData(
+                    icon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  contentPadding: EdgeInsets.all(15),
-                ),
-                items:
-                    <String>[
-                      'Frühstück',
-                      'Hauptspeise',
-                      'Nachtisch',
-                      'Snack',
-                    ].map((String value) {
-                      return DropdownMenuItem<String>(
-                        value: value,
-                        child: Center(
-                          child: Text(
-                            value,
-                            style: const TextStyle(color: Colors.white),
+                  items:
+                      <String>[
+                        'Frühstück',
+                        'Hauptspeise',
+                        'Nachtisch',
+                        'Snack',
+                      ].map((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Center(
+                            child: Text(
+                              value,
+                              style: const TextStyle(color: Colors.white),
+                            ),
                           ),
-                        ),
-                      );
-                    }).toList(),
-                onChanged: (String? newValue) {
-                  // Hier müsstest du mit setState den Wert in einer Variable speichern
-                  // (sobald du ein StatefulWidget hast)
-                },
-                dropdownStyleData: DropdownStyleData(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: const Color.fromARGB(255, 71, 121, 82),
+                        );
+                      }).toList(),
+                  onChanged: (String? newValue) {
+                    // Hier müsstest du mit setState den Wert in einer Variable speichern
+                    // (sobald du ein StatefulWidget hast)
+                  },
+                  dropdownStyleData: DropdownStyleData(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: const Color.fromARGB(255, 71, 121, 82),
+                    ),
                   ),
                 ),
               ),
 
-              SizedBox(height: 20),
-              ZutatenTextField(name: "Zutat", bulletList: true),
-              SizedBox(height: 20),
-              ZutatenTextField(name: "Zubereitung", bulletList: true),
-              SizedBox(height: 20),
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                margin: EdgeInsets.symmetric(horizontal: 25),
+                child: ZutatenTextField(name: "Zutat", bulletList: true),
+              ),
+
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                margin: EdgeInsets.symmetric(horizontal: 25),
+                child: ZutatenTextField(name: "Zubereitung", bulletList: true),
+              ),
 
               Align(
                 alignment: Alignment.centerRight,
