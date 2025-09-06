@@ -4,11 +4,11 @@ class EventTile extends StatelessWidget {
   final String name;
   final String category;
   final String imagePath;
-  final String ranking;
+ 
   final void Function()? details;
 
   const EventTile({
-    required this.ranking,
+  
     required this.name,
     required this.category,
     required this.imagePath,
@@ -49,19 +49,7 @@ class EventTile extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              Row(
-                children: [
-                  Text(
-                    ranking,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Icon(Icons.star, color: Colors.amber, size: 20),
-                ],
-              ),
+              
             ],
           ),
         ],

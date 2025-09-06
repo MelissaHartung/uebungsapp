@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:uebungsapp/components/event-tile.dart';
+import 'package:uebungsapp/pages/recipes_screen.dart';
 
 import '../components/button.dart';
 
@@ -17,21 +18,21 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     List eventList = [
       EventTile(
-        ranking: "4",
+      
         name: "Pfannekuchen",
         category: "Frühstück",
         imagePath: "lib/images/spiegelei.png",
         details: () {},
       ),
       EventTile(
-        ranking: "5",
+       
         name: "Hähnchen",
         category: "Hauptspeise",
         imagePath: "lib/images/chicken.png",
         details: () {},
       ),
       EventTile(
-        ranking: "5",
+      
         name: "Pudding",
         category: "Dessert",
         imagePath: "lib/images/pudding.png",
@@ -86,7 +87,7 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                       SizedBox(height: 15),
                       myButton(
-                        event: () {},
+                        event: () => Navigator.pushNamed(context, '/recipes_screen'),
                         mytext: 'Ansehen',
                         mycolor: Colors.lightGreen,
                         icon: Icons.trending_flat_rounded,
