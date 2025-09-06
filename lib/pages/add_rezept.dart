@@ -30,7 +30,7 @@ class _AddRezeptState extends State<AddRezept> {
             isDarkMode = !isDarkMode;
           });
         }, 
-        icon: Icon(Icons.dark_mode_rounded),color: Colors.white,),
+        icon: isDarkMode ? Icon(Icons.light_mode_rounded) : Icon(Icons.dark_mode_rounded),color: Colors.white,),
         ],
       ),
       body: SafeArea(

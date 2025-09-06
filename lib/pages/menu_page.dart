@@ -53,7 +53,7 @@ class _MenuPageState extends State<MenuPage> {
             child: IconButton(onPressed: (){ setState(() {
               isDarkMode = !isDarkMode;
             });
-            }, icon: Icon(Icons.dark_mode_rounded, color: Colors.white,)),
+            }, icon: isDarkMode ? Icon(Icons.light_mode_rounded, color: Colors.white,) : Icon(Icons.dark_mode_rounded, color: Colors.white,)),
           ),
         ],
       ),
