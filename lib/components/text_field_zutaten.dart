@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 class ZutatenTextField extends StatefulWidget {
   final String name;
   final bool bulletList;
+  final int? maxLines;
+
   const ZutatenTextField({
     required this.name,
     required this.bulletList,
+    required this.maxLines,
     super.key,
   });
 
@@ -64,8 +67,8 @@ class _ZutatenTextFieldState extends State<ZutatenTextField> {
   Widget build(BuildContext context) {
     return TextField(
       controller: myTextController1,
-      maxLines: null,
       keyboardType: TextInputType.multiline,
+      maxLines: widget.maxLines,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
         labelText: widget.name,

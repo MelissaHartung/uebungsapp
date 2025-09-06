@@ -25,13 +25,15 @@ class AddRezept extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 20),
+              SizedBox(height: 10),
 
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                 margin: EdgeInsets.symmetric(horizontal: 25),
-                child: ZutatenTextField(name: "Rezeptname", bulletList: false),
+                child: ZutatenTextField(name: "Rezeptname", bulletList: false, maxLines: 1),
               ),
+
+              
 
               // SizedBox(height: 10),
               Container(
@@ -96,13 +98,13 @@ class AddRezept extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                 margin: EdgeInsets.symmetric(horizontal: 25),
-                child: ZutatenTextField(name: "Zutat", bulletList: true),
+                child: ZutatenTextField(name: "Zutat", bulletList: true, maxLines: 5,),
               ),
 
               Container(
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
                 margin: EdgeInsets.symmetric(horizontal: 25),
-                child: ZutatenTextField(name: "Zubereitung", bulletList: true),
+                child: ZutatenTextField(name: "Zubereitung", bulletList: true, maxLines: 8,),
               ),
 
               Align(
