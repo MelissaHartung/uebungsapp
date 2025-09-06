@@ -2,22 +2,36 @@ import 'package:flutter/material.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:uebungsapp/components/text_field_zutaten.dart';
 
-class AddRezept extends StatelessWidget {
+class AddRezept extends StatefulWidget {
   const AddRezept({super.key});
 
   @override
+  State<AddRezept> createState() => _AddRezeptState();
+}
+
+class _AddRezeptState extends State<AddRezept> {
+  bool isDarkMode = false;
+
+  @override
   Widget build(BuildContext context) {
-    final myTextController = TextEditingController();
-    final myTextController1 = TextEditingController();
-    final myTextController2 = TextEditingController();
+    // final myTextController = TextEditingController();
+    // final myTextController1 = TextEditingController();
+    // final myTextController2 = TextEditingController();
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 120, 156, 122),
+      backgroundColor: isDarkMode ? Colors.black : const Color.fromARGB(255, 120, 156, 122),
       appBar: AppBar(
-        title: Text("Rezepte"),
+        title: Text("Rezepte", style: TextStyle( color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(94, 49, 110, 77),
-        leading: Icon(Icons.menu_rounded),
+        leading: Icon(Icons.menu_rounded, color: Colors.white,),
+        actions: [ IconButton(onPressed: () {
+          setState(() {
+            isDarkMode = !isDarkMode;
+          });
+        }, 
+        icon: Icon(Icons.dark_mode_rounded),color: Colors.white,),
+        ],
       ),
       body: SafeArea(
         child: Padding(
@@ -112,6 +126,7 @@ class AddRezept extends StatelessWidget {
                 child: Container(
                   width: 50,
                   decoration: BoxDecoration(
+                    
                     borderRadius: BorderRadius.circular(20),
                     color: Color.fromARGB(255, 56, 80, 51),
                   ),

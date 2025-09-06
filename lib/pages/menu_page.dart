@@ -3,8 +3,15 @@ import 'package:uebungsapp/components/event-tile.dart';
 
 import '../components/button.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
+
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  bool isDarkMode = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,16 +40,20 @@ class MenuPage extends StatelessWidget {
     ];
 
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 120, 156, 122),
+      backgroundColor:
+      isDarkMode ? Colors.black : const Color.fromARGB(255, 120, 156, 122),
       appBar: AppBar(
-        title: Text("Rezepte"),
+        title: Text("Rezepte", style: TextStyle( color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(94, 49, 110, 77),
-        leading: Icon(Icons.menu_rounded),
+        leading: Icon(Icons.menu_rounded, color: Colors.white,),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: Icon(Icons.shopping_cart),
+            child: IconButton(onPressed: (){ setState(() {
+              isDarkMode = !isDarkMode;
+            });
+            }, icon: Icon(Icons.dark_mode_rounded, color: Colors.white,)),
           ),
         ],
       ),
