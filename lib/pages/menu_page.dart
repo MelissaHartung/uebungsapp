@@ -18,21 +18,18 @@ class _MenuPageState extends State<MenuPage> {
   Widget build(BuildContext context) {
     List eventList = [
       EventTile(
-      
         name: "Pfannekuchen",
         category: "Frühstück",
         imagePath: "lib/images/spiegelei.png",
-        details: () {},
+        details: () => Navigator.pushNamed(context, '/rezepte_page'),
       ),
       EventTile(
-       
         name: "Hähnchen",
         category: "Hauptspeise",
         imagePath: "lib/images/chicken.png",
         details: () {},
       ),
       EventTile(
-      
         name: "Pudding",
         category: "Dessert",
         imagePath: "lib/images/pudding.png",
@@ -41,20 +38,34 @@ class _MenuPageState extends State<MenuPage> {
     ];
 
     return Scaffold(
-      backgroundColor:
-      isDarkMode ? Colors.black : const Color.fromARGB(255, 120, 156, 122),
+      backgroundColor: isDarkMode
+          ? Colors.black
+          : const Color.fromARGB(255, 120, 156, 122),
       appBar: AppBar(
-        title: Text("Rezepte", style: TextStyle( color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+        title: Text(
+          "Rezepte",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(94, 49, 110, 77),
-        leading: Icon(Icons.menu_rounded, color: Colors.white,),
+        leading: Icon(Icons.menu_rounded, color: Colors.white),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
-            child: IconButton(onPressed: (){ setState(() {
-              isDarkMode = !isDarkMode;
-            });
-            }, icon: isDarkMode ? Icon(Icons.light_mode_rounded, color: Colors.white,) : Icon(Icons.dark_mode_rounded, color: Colors.white,)),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  isDarkMode = !isDarkMode;
+                });
+              },
+              icon: isDarkMode
+                  ? Icon(Icons.light_mode_rounded, color: Colors.white)
+                  : Icon(Icons.dark_mode_rounded, color: Colors.white),
+            ),
           ),
         ],
       ),
@@ -87,7 +98,8 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                       SizedBox(height: 15),
                       myButton(
-                        event: () => Navigator.pushNamed(context, '/recipes_screen'),
+                        event: () =>
+                            Navigator.pushNamed(context, '/recipes_screen'),
                         mytext: 'Ansehen',
                         mycolor: Colors.lightGreen,
                         icon: Icons.trending_flat_rounded,
