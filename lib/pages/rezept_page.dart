@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
-class RezeptPage extends StatelessWidget {
+class RezeptPage extends StatefulWidget {
   const RezeptPage({super.key});
 
   @override
+  State<RezeptPage> createState() => _RezeptPageState();
+}
+
+bool isDarkMode = false;
+
+class _RezeptPageState extends State<RezeptPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 120, 156, 122),
+      backgroundColor: isDarkMode
+          ? Colors.black
+          : const Color.fromARGB(255, 120, 156, 122),
       appBar: AppBar(
         title: const Text(
           "Rezepte",
@@ -23,9 +32,14 @@ class RezeptPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 15.0),
             child: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.dark_mode_rounded, color: Colors.white),
-              color: Colors.white,
+              onPressed: () {
+                setState(() {
+                  isDarkMode = !isDarkMode;
+                });
+              },
+              icon: isDarkMode
+                  ? Icon(Icons.light_mode_rounded, color: Colors.white)
+                  : Icon(Icons.dark_mode_rounded, color: Colors.white),
             ),
           ),
         ],
@@ -37,7 +51,10 @@ class RezeptPage extends StatelessWidget {
             SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white10, width: 2),
+                border: Border.all(
+                  color: const Color.fromARGB(87, 255, 255, 255),
+                  width: 2,
+                ),
                 borderRadius: BorderRadius.circular(20),
               ),
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
@@ -72,7 +89,10 @@ class RezeptPage extends StatelessWidget {
             SizedBox(height: 20),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white10, width: 2),
+                border: Border.all(
+                  color: const Color.fromARGB(97, 255, 255, 255),
+                  width: 2,
+                ),
                 borderRadius: BorderRadius.circular(20),
               ),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
@@ -89,7 +109,10 @@ class RezeptPage extends StatelessWidget {
             SizedBox(height: 10),
             Container(
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white10, width: 2),
+                border: Border.all(
+                  color: const Color.fromARGB(82, 255, 255, 255),
+                  width: 2,
+                ),
                 borderRadius: BorderRadius.circular(20),
               ),
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
