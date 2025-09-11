@@ -44,89 +44,91 @@ class _RezeptPageState extends State<RezeptPage> {
           ),
         ],
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Image.asset("lib/images/spiegelei.png", height: 300),
-            SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromARGB(87, 255, 255, 255),
-                  width: 2,
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              Image.asset("lib/images/spiegelei.png", height: 300),
+              SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(87, 255, 255, 255),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
+                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
 
-              child: const Text(
-                "Rezeptname",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                child: const Text(
+                  "Rezeptname",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
 
-            SizedBox(height: 10),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(134, 137, 214, 137),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+              SizedBox(height: 10),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  color: const Color.fromARGB(134, 137, 214, 137),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
 
-              child: const Text(
-                "Kategorie",
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                child: const Text(
+                  "Kategorie",
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 20),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromARGB(97, 255, 255, 255),
-                  width: 2,
+              SizedBox(height: 20),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(97, 255, 255, 255),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
 
-              child: const Text(
-                "Zutaten",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                child: const Text(
+                  "Zutaten",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: const Color.fromARGB(82, 255, 255, 255),
-                  width: 2,
+              SizedBox(height: 10),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: const Color.fromARGB(82, 255, 255, 255),
+                    width: 2,
+                  ),
+                  borderRadius: BorderRadius.circular(20),
                 ),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
+                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
 
-              child: const Text(
-                "Zubereitung",
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                child: const Text(
+                  "Zubereitung",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
