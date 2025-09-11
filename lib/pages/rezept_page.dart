@@ -35,39 +35,72 @@ class RezeptPage extends StatelessWidget {
           children: [
             Image.asset("lib/images/spiegelei.png", height: 300),
             SizedBox(height: 20),
-            const Text(
-              "Rezeptname",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white10, width: 2),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
+
+              child: const Text(
+                "Rezeptname",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+
+            SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: const Color.fromARGB(134, 137, 214, 137),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
+
+              child: const Text(
+                "Kategorie",
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white10, width: 2),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
+
+              child: const Text(
+                "Zutaten",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
             SizedBox(height: 10),
-            const Text(
-              "Kategorie",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.white10, width: 2),
+                borderRadius: BorderRadius.circular(20),
               ),
-            ),
-            SizedBox(height: 10),
-            const Text(
-              "Zutaten",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 10),
-            const Text(
-              "Zubereitung",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
+
+              child: const Text(
+                "Zubereitung",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
             ),
           ],
