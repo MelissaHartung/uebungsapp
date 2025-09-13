@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:uebungsapp/add_recipe_screen.dart';
 import 'package:uebungsapp/components/event-tile.dart';
 import 'package:uebungsapp/pages/recipes_screen.dart';
+import 'package:uebungsapp/recipe_list_screen.dart';
 
 import '../components/button.dart';
 
@@ -97,12 +99,16 @@ class _MenuPageState extends State<MenuPage> {
                         ),
                       ),
                       SizedBox(height: 15),
-                      myButton(
-                        event: () =>
-                            Navigator.pushNamed(context, '/recipes_screen'),
-                        mytext: 'Ansehen',
-                        mycolor: Colors.lightGreen,
-                        icon: Icons.trending_flat_rounded,
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => RecipeListScreen(),
+                            ),
+                          );
+                        },
+                        child: Text('Meine Rezepte anzeigen'),
                       ),
                     ],
                   ),
@@ -159,12 +165,14 @@ class _MenuPageState extends State<MenuPage> {
             SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.only(bottom: .0),
-              child: myButton(
-                event: () => Navigator.pushNamed(context, '/addrezept'),
-                image: Image.asset('lib/images/diet.png', height: 60),
-                mytext: 'Rezept hinzufügen',
-                mycolor: const Color.fromARGB(255, 59, 104, 60),
-                icon: Icons.add,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddRecipeScreen()),
+                  );
+                },
+                child: Text('Rezept hinzufügen'),
               ),
             ),
           ],

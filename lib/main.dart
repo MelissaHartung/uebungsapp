@@ -4,6 +4,9 @@ import 'package:uebungsapp/pages/rezept_page.dart';
 import 'package:uebungsapp/pages/start_page.dart';
 import 'package:uebungsapp/pages/add_rezept.dart';
 import 'package:uebungsapp/pages/recipes_screen.dart';
+import 'recipe_list_screen.dart';
+// main.dart - ganz oben zu den anderen imports
+import 'add_recipe_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,6 +27,8 @@ class MyApp extends StatelessWidget {
         '/addrezept': (context) => AddRezept(),
         '/recipes_screen': (context) => RecipesScreen(),
         '/rezepte_page': (context) => RezeptPage(),
+        '/add_recipe_screen': (context) => AddRecipeScreen(),
+        '/recipe_list_screen': (context) => RecipeListScreen(),
       },
     );
   }
