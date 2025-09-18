@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:uebungsapp/add_recipe_screen.dart';
 import 'package:uebungsapp/components/event-tile.dart';
-import 'package:uebungsapp/pages/recipes_screen.dart';
 import 'package:uebungsapp/pages/rezept_page.dart';
 import 'package:uebungsapp/recipe_list_screen.dart';
 
 import '../rezept.dart';
-import '../components/button.dart';
+import '../database_helper.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -17,47 +16,9 @@ class MenuPage extends StatefulWidget {
 
 class _MenuPageState extends State<MenuPage> {
   bool isDarkMode = false;
-
+  List<Recipe> _recipes = [];
   @override
   Widget build(BuildContext context) {
-    List eventList = [
-      EventTile(
-        name: "Pfannekuchen",
-        category: "Frühstück",
-        imagePath: "lib/images/spiegelei.png",
-        details: () {
-          // Erstelle ein temporäres Rezept-Objekt für die Demo
-          final pfannkuchenRezept = Recipe(
-            title: 'Pfannekuchen',
-            category: 'Frühstück',
-            ingredients: '250g Mehl\n2 Eier\n500ml Milch\n1 Prise Salz',
-            instructions:
-                '1. Mehl und Salz mischen.\n2. Eier und Milch hinzufügen und zu einem glatten Teig verrühren.\n3. In einer heißen Pfanne mit etwas Öl goldbraun backen.',
-          );
-
-          // Navigiere und gib das Rezept mit
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => RezeptPage(recipe: pfannkuchenRezept),
-            ),
-          );
-        },
-      ),
-      EventTile(
-        name: "Hähnchen",
-        category: "Hauptspeise",
-        imagePath: "lib/images/chicken.png",
-        details: () {},
-      ),
-      EventTile(
-        name: "Pudding",
-        category: "Dessert",
-        imagePath: "lib/images/pudding.png",
-        details: () {},
-      ),
-    ];
-
     return Scaffold(
       backgroundColor: isDarkMode
           ? Colors.black
@@ -182,12 +143,23 @@ class _MenuPageState extends State<MenuPage> {
             SizedBox(height: 25),
             Expanded(
               child: ListView.builder(
-                itemCount: eventList.length,
                 scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                  child: eventList[index],
-                ),
+
+                itemCount: _recipes.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final recipe = _recipes[index];
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: EventTile(
+                      name: recipe.title,
+                      category: recipe.category,
+                      imagePath: 'lib/images/spiegelei.png', // Platzhalterbild
+                      details: () {
+                        _showRecipeDetails(recipe);
+                      },
+                    ),
+                  );
+                },
               ),
             ),
 
@@ -235,5 +207,29 @@ class _MenuPageState extends State<MenuPage> {
         ),
       ),
     );
+  }
+
+  void _showRecipeDetails(Recipe recipe) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RezeptPage(recipe: recipe)),
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _loadRecipes(); // Sagt der Seite: "Lade die Rezepte, sobald du startest!"
+  }
+
+  // Die Anleitung, wie die Rezepte aus der Datenbank geladen werden
+  void _loadRecipes() async {
+    final allrecipes = await DatabaseHelper().getAllRecipes();
+    allrecipes.shuffle(); // Mische die Liste der Rezepte
+    setState(() {
+      _recipes = allrecipes
+          .take(4)
+          .toList(); // Nimm die ersten 4 Rezepte aus der gemischten Liste
+    });
   }
 }

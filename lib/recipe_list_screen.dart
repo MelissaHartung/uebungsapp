@@ -1,5 +1,6 @@
 // lib/recipe_list_screen.dart
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:uebungsapp/components/event-tile.dart';
 import 'package:uebungsapp/pages/rezept_page.dart';
 import 'database_helper.dart';
@@ -13,6 +14,39 @@ class RecipeListScreen extends StatefulWidget {
 
 class _RecipeListScreenState extends State<RecipeListScreen> {
   List<Recipe> _recipes = [];
+
+  void _showOptionsDialog(Recipe recipe) {
+    showDialog(
+      context: this.context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text('Optionen'),
+        content: Text('Was möchten Sie mit dem Rezept "${recipe.title}" tun?'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              // Hier können Sie die Bearbeitungsfunktionalität hinzufügen
+            },
+            child: Text('Bearbeiten'),
+          ),
+          TextButton(
+            onPressed: () async {
+              await DatabaseHelper().deleteRecipe(recipe.id!);
+              Navigator.of(context).pop();
+              _loadRecipes(); // Liste nach dem Löschen aktualisieren
+            },
+            child: Text('Löschen', style: TextStyle(color: Colors.red)),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text('Abbrechen'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   void initState() {
@@ -66,11 +100,15 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
                   details: () {
                     _showRecipeDetails(recipe);
                   },
+                  onLongPress: () {
+                    _showOptionsDialog(recipe);
+                  },
                 );
               },
             ),
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color.fromARGB(255, 238, 149, 32),
         onPressed: () {
           Navigator.push(
             context,
@@ -80,7 +118,7 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
             _loadRecipes();
           });
         },
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Colors.white),
         tooltip: 'Rezept hinzufügen',
       ),
     );
@@ -88,47 +126,8 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
 
   void _showRecipeDetails(Recipe recipe) {
     Navigator.push(
-      context,
+      context as BuildContext,
       MaterialPageRoute(builder: (context) => RezeptPage(recipe: recipe)),
     );
   }
-
-  // // Rezept-Details anzeigen
-  // void _showRecipeDetails(Recipe recipe) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text(recipe.title),
-  //         content: SingleChildScrollView(
-  //           child: Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             mainAxisSize: MainAxisSize.min,
-  //             children: [
-  //               Text(
-  //                 'Kategorie: ${recipe.category}',
-  //                 style: TextStyle(fontWeight: FontWeight.bold),
-  //               ),
-  //               SizedBox(height: 10),
-  //               Text('Zutaten:', style: TextStyle(fontWeight: FontWeight.bold)),
-  //               Text(recipe.ingredients),
-  //               SizedBox(height: 10),
-  //               Text(
-  //                 'Zubereitung:',
-  //                 style: TextStyle(fontWeight: FontWeight.bold),
-  //               ),
-  //               Text(recipe.instructions),
-  //             ],
-  //           ),
-  //         ),
-  //         actions: [
-  //           TextButton(
-  //             onPressed: () => Navigator.of(context).pop(),
-  //             child: Text('Schließen'),
-  //           ),
-  //         ],
-  //       );
-  //     },
-  //   );
-  // }
 }

@@ -51,23 +51,26 @@ class _RezeptPageState extends State<RezeptPage> {
             children: [
               Image.asset("lib/images/spiegelei.png", height: 250),
               SizedBox(height: 20),
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 9, 70, 17),
-                  border: Border.all(
-                    color: const Color.fromARGB(87, 255, 255, 255),
-                    width: 2,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 60.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 9, 70, 17),
+                    border: Border.all(
+                      color: const Color.fromARGB(87, 255, 255, 255),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
+                  padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
 
-                child: Text(
-                  widget.recipe.title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  child: Text(
+                    widget.recipe.title,
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
@@ -112,7 +115,7 @@ class _RezeptPageState extends State<RezeptPage> {
               ),
               SizedBox(height: 10),
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.symmetric(horizontal: 60),
                 child: Container(
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 9, 70, 17),

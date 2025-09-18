@@ -18,8 +18,8 @@ class _AddRecipeScreenState extends State<AddRecipeScreen> {
 
   String _selectedCategory = 'Hauptgericht';
   final List<String> _categories = [
+    'Frühstück',
     'Hauptgericht',
-    'Vorspeise',
     'Dessert',
     'Snack',
   ];

@@ -43,4 +43,9 @@ class DatabaseHelper {
     final List<Map<String, dynamic>> maps = await db.query('recipes');
     return List.generate(maps.length, (i) => Recipe.fromMap(maps[i]));
   }
+
+  Future<void> deleteRecipe(int id) async {
+    final db = await database;
+    await db.delete('recipes', where: 'id = ?', whereArgs: [id]);
+  }
 }
