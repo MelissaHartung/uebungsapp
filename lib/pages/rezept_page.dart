@@ -49,10 +49,11 @@ class _RezeptPageState extends State<RezeptPage> {
         child: Center(
           child: Column(
             children: [
-              Image.asset("lib/images/spiegelei.png", height: 300),
+              Image.asset("lib/images/spiegelei.png", height: 250),
               SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 9, 70, 17),
                   border: Border.all(
                     color: const Color.fromARGB(87, 255, 255, 255),
                     width: 2,
@@ -75,7 +76,7 @@ class _RezeptPageState extends State<RezeptPage> {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromARGB(134, 137, 214, 137),
+                  color: const Color.fromARGB(133, 42, 82, 42),
                 ),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
 
@@ -91,6 +92,7 @@ class _RezeptPageState extends State<RezeptPage> {
               SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 9, 70, 17),
                   border: Border.all(
                     color: const Color.fromARGB(97, 255, 255, 255),
                     width: 2,
@@ -109,22 +111,26 @@ class _RezeptPageState extends State<RezeptPage> {
                 ),
               ),
               SizedBox(height: 10),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color.fromARGB(82, 255, 255, 255),
-                    width: 2,
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 9, 70, 17),
+                    border: Border.all(
+                      color: const Color.fromARGB(82, 255, 255, 255),
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(20),
                   ),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
 
-                child: Text(
-                  widget.recipe.instructions,
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  child: Text(
+                    widget.recipe.instructions,
+                    style: TextStyle(
+                      fontSize: 16,
+                      // fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),
