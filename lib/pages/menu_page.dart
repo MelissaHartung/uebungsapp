@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:uebungsapp/add_recipe_screen.dart';
 import 'package:uebungsapp/components/event-tile.dart';
 import 'package:uebungsapp/pages/recipes_screen.dart';
+import 'package:uebungsapp/pages/rezept_page.dart';
 import 'package:uebungsapp/recipe_list_screen.dart';
 
+import '../rezept.dart';
 import '../components/button.dart';
 
 class MenuPage extends StatefulWidget {
@@ -23,7 +25,24 @@ class _MenuPageState extends State<MenuPage> {
         name: "Pfannekuchen",
         category: "Frühstück",
         imagePath: "lib/images/spiegelei.png",
-        details: () => Navigator.pushNamed(context, '/rezepte_page'),
+        details: () {
+          // Erstelle ein temporäres Rezept-Objekt für die Demo
+          final pfannkuchenRezept = Recipe(
+            title: 'Pfannekuchen',
+            category: 'Frühstück',
+            ingredients: '250g Mehl\n2 Eier\n500ml Milch\n1 Prise Salz',
+            instructions:
+                '1. Mehl und Salz mischen.\n2. Eier und Milch hinzufügen und zu einem glatten Teig verrühren.\n3. In einer heißen Pfanne mit etwas Öl goldbraun backen.',
+          );
+
+          // Navigiere und gib das Rezept mit
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => RezeptPage(recipe: pfannkuchenRezept),
+            ),
+          );
+        },
       ),
       EventTile(
         name: "Hähnchen",
@@ -100,6 +119,21 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                       SizedBox(height: 15),
                       ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(
+                            255,
+                            111,
+                            185,
+                            68,
+                          ),
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 15,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -108,7 +142,10 @@ class _MenuPageState extends State<MenuPage> {
                             ),
                           );
                         },
-                        child: Text('Meine Rezepte anzeigen'),
+                        child: Text(
+                          'Meine Rezepte anzeigen',
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ],
                   ),
@@ -153,26 +190,45 @@ class _MenuPageState extends State<MenuPage> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
-            Text(
-              "Rezepte",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 20),
+
+            SizedBox(height: 50),
             Padding(
-              padding: const EdgeInsets.only(bottom: .0),
+              padding: const EdgeInsets.only(bottom: 30.0),
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color.fromARGB(255, 53, 110, 55),
+                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                ),
+
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => AddRecipeScreen()),
                   );
                 },
-                child: Text('Rezept hinzufügen'),
+
+                child: Row(
+                  children: [
+                    Text(
+                      'Rezept hinzufügen',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Icon(Icons.add, color: Colors.white, size: 30),
+                    SizedBox(width: 10),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 80.0),
+                      child: Image.asset("lib/images/diet.png", height: 35),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:uebungsapp/rezept.dart';
 
 class RezeptPage extends StatefulWidget {
-  const RezeptPage({super.key});
+  final Recipe recipe;
+  const RezeptPage({super.key, required this.recipe});
 
   @override
   State<RezeptPage> createState() => _RezeptPageState();
 }
 
-bool isDarkMode = false;
-
 class _RezeptPageState extends State<RezeptPage> {
+  bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +61,8 @@ class _RezeptPageState extends State<RezeptPage> {
                 ),
                 padding: EdgeInsets.symmetric(vertical: 5, horizontal: 90),
 
-                child: const Text(
-                  "Rezeptname",
+                child: Text(
+                  widget.recipe.title,
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -78,8 +79,8 @@ class _RezeptPageState extends State<RezeptPage> {
                 ),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
 
-                child: const Text(
-                  "Kategorie",
+                child: Text(
+                  widget.recipe.category,
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.bold,
@@ -98,8 +99,8 @@ class _RezeptPageState extends State<RezeptPage> {
                 ),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
 
-                child: const Text(
-                  "Zutaten",
+                child: Text(
+                  widget.recipe.ingredients,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -118,8 +119,8 @@ class _RezeptPageState extends State<RezeptPage> {
                 ),
                 padding: EdgeInsets.symmetric(vertical: 10, horizontal: 90),
 
-                child: const Text(
-                  "Zubereitung",
+                child: Text(
+                  widget.recipe.instructions,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

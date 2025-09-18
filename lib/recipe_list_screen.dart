@@ -1,5 +1,7 @@
 // lib/recipe_list_screen.dart
 import 'package:flutter/material.dart';
+import 'package:uebungsapp/components/event-tile.dart';
+import 'package:uebungsapp/pages/rezept_page.dart';
 import 'database_helper.dart';
 import 'rezept.dart';
 import 'add_recipe_screen.dart';
@@ -29,7 +31,14 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Meine Rezepte')),
+      backgroundColor: const Color.fromARGB(255, 120, 156, 122),
+      appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 30, 87, 37),
+        title: Text(
+          'Meine Rezepte',
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
+      ),
       body: _recipes.isEmpty
           ? Center(
               child: Text(
@@ -38,27 +47,29 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
                 style: TextStyle(fontSize: 16),
               ),
             )
-          : ListView.builder(
+          : GridView.builder(
+              shrinkWrap: true,
               itemCount: _recipes.length,
-              itemBuilder: (context, index) {
+              padding: EdgeInsets.all(10),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 15.0,
+                crossAxisCount: 2,
+                childAspectRatio: 0.75,
+              ),
+              itemBuilder: (BuildContext context, int index) {
                 final recipe = _recipes[index];
-                return Card(
-                  margin: EdgeInsets.all(8.0),
-                  child: ListTile(
-                    title: Text(
-                      recipe.title,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Text('Kategorie: ${recipe.category}'),
-                    trailing: Icon(Icons.arrow_forward_ios),
-                    onTap: () {
-                      // Hier zeigen wir das Rezept im Detail an
-                      _showRecipeDetails(recipe);
-                    },
-                  ),
+                return EventTile(
+                  name: recipe.title,
+                  category: recipe.category,
+                  imagePath: 'lib/images/spiegelei.png', // Platzhalterbild
+                  details: () {
+                    _showRecipeDetails(recipe);
+                  },
                 );
               },
             ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
@@ -75,42 +86,49 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
     );
   }
 
-  // Rezept-Details anzeigen
   void _showRecipeDetails(Recipe recipe) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(recipe.title),
-          content: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Kategorie: ${recipe.category}',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                SizedBox(height: 10),
-                Text('Zutaten:', style: TextStyle(fontWeight: FontWeight.bold)),
-                Text(recipe.ingredients),
-                SizedBox(height: 10),
-                Text(
-                  'Zubereitung:',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(recipe.instructions),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('Schließen'),
-            ),
-          ],
-        );
-      },
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => RezeptPage(recipe: recipe)),
     );
   }
+
+  // // Rezept-Details anzeigen
+  // void _showRecipeDetails(Recipe recipe) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text(recipe.title),
+  //         content: SingleChildScrollView(
+  //           child: Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             mainAxisSize: MainAxisSize.min,
+  //             children: [
+  //               Text(
+  //                 'Kategorie: ${recipe.category}',
+  //                 style: TextStyle(fontWeight: FontWeight.bold),
+  //               ),
+  //               SizedBox(height: 10),
+  //               Text('Zutaten:', style: TextStyle(fontWeight: FontWeight.bold)),
+  //               Text(recipe.ingredients),
+  //               SizedBox(height: 10),
+  //               Text(
+  //                 'Zubereitung:',
+  //                 style: TextStyle(fontWeight: FontWeight.bold),
+  //               ),
+  //               Text(recipe.instructions),
+  //             ],
+  //           ),
+  //         ),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () => Navigator.of(context).pop(),
+  //             child: Text('Schließen'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 }

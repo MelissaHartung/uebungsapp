@@ -4,11 +4,13 @@ class ZutatenTextField extends StatefulWidget {
   final String name;
   final bool bulletList;
   final int? maxLines;
+  final TextEditingController controller;
 
   const ZutatenTextField({
     required this.name,
     required this.bulletList,
     required this.maxLines,
+    required this.controller,
     super.key,
   });
 
@@ -17,14 +19,12 @@ class ZutatenTextField extends StatefulWidget {
 }
 
 class _ZutatenTextFieldState extends State<ZutatenTextField> {
-  final TextEditingController myTextController1 = TextEditingController();
-
   @override
   void initState() {
     super.initState();
     if (widget.bulletList) {
-      myTextController1.addListener(() {
-        final oldText = myTextController1.text;
+      widget.controller.addListener(() {
+        final oldText = widget.controller.text;
         final lines = oldText.split('\n');
 
         List<String> newLines = [];
@@ -43,10 +43,10 @@ class _ZutatenTextFieldState extends State<ZutatenTextField> {
         final newText = newLines.join('\n');
 
         if (newText != oldText) {
-          final cursorOffset = myTextController1.selection.baseOffset;
+          final cursorOffset = widget.controller.selection.baseOffset;
           final offsetDiff = newText.length - oldText.length;
 
-          myTextController1.value = TextEditingValue(
+          widget.controller.value = TextEditingValue(
             text: newText,
             selection: TextSelection.collapsed(
               offset: cursorOffset + offsetDiff,
@@ -58,15 +58,9 @@ class _ZutatenTextFieldState extends State<ZutatenTextField> {
   }
 
   @override
-  void dispose() {
-    myTextController1.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return TextField(
-      controller: myTextController1,
+      controller: widget.controller,
       keyboardType: TextInputType.multiline,
       maxLines: widget.maxLines,
       style: TextStyle(color: Colors.white),
