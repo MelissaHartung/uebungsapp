@@ -110,7 +110,7 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ],
                   ),
-                  Image.asset("lib/images/pumpkin.png", height: 90),
+                  Image.asset("lib/images/pumpkin.png", height: 70),
                 ],
               ),
             ),
@@ -197,7 +197,7 @@ class _MenuPageState extends State<MenuPage> {
                     SizedBox(width: 10),
                     Padding(
                       padding: const EdgeInsets.only(left: 80.0),
-                      child: Image.asset("lib/images/diet.png", height: 35),
+                      child: Image.asset("lib/images/diet.png", height: 20),
                     ),
                   ],
                 ),

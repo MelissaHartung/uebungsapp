@@ -14,6 +14,23 @@ class RecipeListScreen extends StatefulWidget {
 
 class _RecipeListScreenState extends State<RecipeListScreen> {
   List<Recipe> _recipes = [];
+  List <Recipe> _filteredRecipes = [];
+
+void _filterRecipes() {
+  final query = _searchController.text.toLowerCase();
+  final filtered = _recipes.where((recipe) {
+    final title = recipe.title.toLowerCase();
+    final category = recipe.category.toLowerCase();
+    return title.contains(query) || category.contains(query);
+  }).toList();
+  setState(() {
+    _filteredRecipes = filtered;
+  });
+}
+
+  final TextEditingController _searchController = TextEditingController();
+
+
 
   void _showOptionsDialog(Recipe recipe) {
     showDialog(
@@ -51,14 +68,25 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
   @override
   void initState() {
     super.initState();
-    _loadRecipes(); // Rezepte beim Start laden
+    _loadRecipes();
+    _searchController.addListener(_filterRecipes); // Rezepte beim Start laden
   }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+
 
   // Alle Rezepte aus der Datenbank laden
   void _loadRecipes() async {
     final recipes = await DatabaseHelper().getAllRecipes();
     setState(() {
       _recipes = recipes;
+      _filteredRecipes = recipes;
+
     });
   }
 
@@ -73,39 +101,71 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
       ),
-      body: _recipes.isEmpty
+
+      body:
+      Padding(
+  padding: const EdgeInsets.all(20.0),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      TextField(
+        controller: _searchController,
+        style: TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          hintText: "Suche Rezept",
+          hintStyle: TextStyle(color: Colors.white70), // Kleiner Tipp: Farbe für den Platzhalter
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white, width: 2),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white, width: 2),
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
+      ),
+      
+
+      
+       _filteredRecipes.isEmpty
           ? Center(
               child: Text(
                 'Noch keine Rezepte vorhanden.\nFüge dein erstes Rezept hinzu!',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: Colors.white), // Tipp: Farbe für den Text
               ),
             )
-          : GridView.builder(
-              shrinkWrap: true,
-              itemCount: _recipes.length,
-              padding: EdgeInsets.all(10),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 15.0,
-                crossAxisCount: 2,
-                childAspectRatio: 0.75,
+          : Padding(
+            padding: const EdgeInsets.only(top: 20),
+            child: GridView.builder(
+                shrinkWrap: true,
+                itemCount: _filteredRecipes.length,
+                padding: EdgeInsets.all(10),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 15.0,
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.75,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  final recipe = _filteredRecipes[index];
+                  return EventTile(
+                    name: recipe.title,
+                    category: recipe.category,
+                    imagePath: 'lib/images/spiegelei.png', // Platzhalterbild
+                    details: () {
+                      _showRecipeDetails(recipe);
+                    },
+                    onLongPress: () {
+                      _showOptionsDialog(recipe);
+                    },
+                  );
+                },
               ),
-              itemBuilder: (BuildContext context, int index) {
-                final recipe = _recipes[index];
-                return EventTile(
-                  name: recipe.title,
-                  category: recipe.category,
-                  imagePath: 'lib/images/spiegelei.png', // Platzhalterbild
-                  details: () {
-                    _showRecipeDetails(recipe);
-                  },
-                  onLongPress: () {
-                    _showOptionsDialog(recipe);
-                  },
-                );
-              },
-            ),
+          ),
+    ]
+    ),
+),
 
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 238, 149, 32),

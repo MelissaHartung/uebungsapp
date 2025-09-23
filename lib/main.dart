@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:uebungsapp/pages/menu_page.dart';
 import 'package:uebungsapp/pages/start_page.dart';
-import 'package:uebungsapp/pages/recipes_screen.dart';
+// import 'package:uebungsapp/pages/recipes_screen.dart';
 import 'recipe_list_screen.dart';
 // main.dart - ganz oben zu den anderen imports
 import 'add_recipe_screen.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/startpage': (context) => StartPage(),
         '/menupage': (context) => MenuPage(),
-        '/recipes_screen': (context) => RecipesScreen(),
+        // '/recipes_screen': (context) => RecipesScreen(),
         '/add_recipe_screen': (context) => AddRecipeScreen(),
         '/recipe_list_screen': (context) => RecipeListScreen(),
       },
