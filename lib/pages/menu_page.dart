@@ -65,20 +65,20 @@ class _MenuPageState extends State<MenuPage> {
                 color: const Color.fromARGB(255, 53, 110, 55),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Column(
                 children: [
-                  Column(
+                  Text(
+                    'Rezept',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
-                        'Rezept',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      SizedBox(height: 15),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(
@@ -108,27 +108,10 @@ class _MenuPageState extends State<MenuPage> {
                           style: TextStyle(color: Colors.white),
                         ),
                       ),
+                      Image.asset("lib/images/pumpkin.png", height: 70),
                     ],
                   ),
-                  Image.asset("lib/images/pumpkin.png", height: 70),
                 ],
-              ),
-            ),
-            SizedBox(height: 25),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: "Suche Rezept",
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.white, width: 2),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
               ),
             ),
             SizedBox(height: 25),
@@ -163,9 +146,9 @@ class _MenuPageState extends State<MenuPage> {
               ),
             ),
 
-            SizedBox(height: 50),
+            SizedBox(height: 40),
             Padding(
-              padding: const EdgeInsets.only(bottom: 30.0),
+              padding: const EdgeInsets.only(bottom: 40.0, left: 25, right: 25),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 53, 110, 55),
@@ -193,12 +176,10 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ),
                     SizedBox(width: 10),
-                    Icon(Icons.add, color: Colors.white, size: 30),
+                    // Image.asset("lib/images/diet.png", height: 40),
                     SizedBox(width: 10),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 80.0),
-                      child: Image.asset("lib/images/diet.png", height: 20),
-                    ),
+                    Icon(Icons.add, color: Colors.white, size: 30),
+                    // Spacer(), // Dieser Spacer schiebt alles, was danach kommt, nach rechts
                   ],
                 ),
               ),
